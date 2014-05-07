@@ -211,6 +211,8 @@
 //    circleView.center = circlePoint;
 //    [self addSubview:circleView];
     
+    circleView.center = circlePoint;
+    [self addSubview:circleView];
     /*
     if (self.state == UIControlStateNormal || self.state == UIControlStateDisabled)
     {
