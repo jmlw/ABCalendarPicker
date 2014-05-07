@@ -35,7 +35,6 @@
 		25DA123615E8DD530067F6EB /* UIMyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 25DA123415E8DD530067F6EB /* UIMyButton.m */; };
 		25DDA87015AA22A80049B532 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25DDA86F15AA22A80049B532 /* Foundation.framework */; };
 		25DDA87715AA22A80049B532 /* ABCalendarPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 25DDA87615AA22A80049B532 /* ABCalendarPicker.m */; };
-		25DDA87F15AA22A80049B532 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25DDA87E15AA22A80049B532 /* SenTestingKit.framework */; };
 		25DDA88215AA22A80049B532 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25DDA86F15AA22A80049B532 /* Foundation.framework */; };
 		25DDA88515AA22A80049B532 /* libABCalendarPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25DDA86C15AA22A80049B532 /* libABCalendarPicker.a */; };
 		25DDA88E15AA22A80049B532 /* ABCalendarPickerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 25DDA88D15AA22A80049B532 /* ABCalendarPickerTests.m */; };
@@ -117,8 +116,7 @@
 		25DDA87315AA22A80049B532 /* ABCalendarPicker-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ABCalendarPicker-Prefix.pch"; sourceTree = "<group>"; };
 		25DDA87415AA22A80049B532 /* ABCalendarPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ABCalendarPicker.h; sourceTree = "<group>"; };
 		25DDA87615AA22A80049B532 /* ABCalendarPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ABCalendarPicker.m; sourceTree = "<group>"; };
-		25DDA87D15AA22A80049B532 /* ABCalendarPickerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ABCalendarPickerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		25DDA87E15AA22A80049B532 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		25DDA87D15AA22A80049B532 /* ABCalendarPickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ABCalendarPickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25DDA88815AA22A80049B532 /* ABCalendarPickerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ABCalendarPickerTests-Info.plist"; sourceTree = "<group>"; };
 		25DDA88C15AA22A80049B532 /* ABCalendarPickerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ABCalendarPickerTests.h; sourceTree = "<group>"; };
 		25DDA88D15AA22A80049B532 /* ABCalendarPickerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ABCalendarPickerTests.m; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25DDA87F15AA22A80049B532 /* SenTestingKit.framework in Frameworks */,
 				25DDA88215AA22A80049B532 /* Foundation.framework in Frameworks */,
 				25DDA88515AA22A80049B532 /* libABCalendarPicker.a in Frameworks */,
 			);
@@ -196,7 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				25DDA86C15AA22A80049B532 /* libABCalendarPicker.a */,
-				25DDA87D15AA22A80049B532 /* ABCalendarPickerTests.octest */,
+				25DDA87D15AA22A80049B532 /* ABCalendarPickerTests.xctest */,
 				25DDA8DB15AA2A380049B532 /* ABCalendarPicker.bundle */,
 			);
 			name = Products;
@@ -207,7 +204,6 @@
 			children = (
 				25DDA89715AA23040049B532 /* UIKit.framework */,
 				25DDA86F15AA22A80049B532 /* Foundation.framework */,
-				25DDA87E15AA22A80049B532 /* SenTestingKit.framework */,
 				25DDA8DC15AA2A380049B532 /* CoreFoundation.framework */,
 			);
 			name = Frameworks;
@@ -393,8 +389,8 @@
 			);
 			name = ABCalendarPickerTests;
 			productName = ABCalendarPickerTests;
-			productReference = 25DDA87D15AA22A80049B532 /* ABCalendarPickerTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = 25DDA87D15AA22A80049B532 /* ABCalendarPickerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		25DDA8DA15AA2A380049B532 /* ABCalendarPickerBundle */ = {
 			isa = PBXNativeTarget;
@@ -419,7 +415,8 @@
 		25DDA86315AA22A80049B532 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastTestingUpgradeCheck = 0510;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Happy Nation Project";
 			};
 			buildConfigurationList = 25DDA86615AA22A80049B532 /* Build configuration list for PBXProject "ABCalendarPicker" */;
@@ -585,8 +582,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -602,8 +601,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -652,12 +652,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ABCalendarPicker/ABCalendarPicker-Prefix.pch";
 				INFOPLIST_FILE = "ABCalendarPickerTests/ABCalendarPickerTests-Info.plist";
 				PRODUCT_NAME = ABCalendarPickerTests;
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -667,12 +667,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ABCalendarPicker/ABCalendarPicker-Prefix.pch";
 				INFOPLIST_FILE = "ABCalendarPickerTests/ABCalendarPickerTests-Info.plist";
 				PRODUCT_NAME = ABCalendarPickerTests;
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -693,7 +693,6 @@
 		25DDA8E615AA2A380049B532 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COMBINE_HIDPI_IMAGES = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -714,7 +713,6 @@
 		25DDA8E715AA2A380049B532 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COMBINE_HIDPI_IMAGES = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;

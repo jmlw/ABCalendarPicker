@@ -35,8 +35,8 @@
     self = [super init];
     if(self)
     {
-        _tileTitleFont = [UIFont boldSystemFontOfSize:24.0];
-        _tileDotFont = [UIFont boldSystemFontOfSize:20.0];
+        _tileTitleFont = [UIFont boldSystemFontOfSize:21.0];
+        _tileDotFont = [UIFont boldSystemFontOfSize:17.0];
     }
     return self;
 }
@@ -189,14 +189,23 @@
     //UIEdgeInsets capInsects = [self backgroundImageCapInsetsForState:self.state];
     NSString * dotsText = [@"" stringByPaddingToLength:self.numberOfDots withString:@"•" startingAtIndex:0];
     
+    
     UIFont * titleFont = self.tileTitleFont;
     UIFont * dotsFont = self.tileDotFont;
     
     CGSize titleSize = [titleText sizeWithFont:titleFont];
     CGSize dotsSize = [dotsText sizeWithFont:dotsFont];
     
+    UIView *circleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, titleSize.height, titleSize.height)];
+    circleView.layer.cornerRadius = titleSize.height/2.f;
+    circleView.backgroundColor = [UIColor blueColor];
+    
     CGPoint titlePoint = CGPointMake((self.bounds.size.width - titleSize.width)/2,
-                                     (self.bounds.size.height - titleSize.height)/2);
+                                     (self.bounds.size.height - titleSize.height)/2 -
+                                     (self.bounds.size.height*1/8));
+    CGPoint circlePoint = CGPointMake((self.bounds.size.width - titleSize.width)/2,
+                                      (self.bounds.size.height - titleSize.height)/2 -
+                                      (self.bounds.size.height*1/8));;
     CGPoint dotsPoint = CGPointMake((self.bounds.size.width - dotsSize.width)/2,
                                     self.bounds.size.height*3/5);
     
@@ -228,6 +237,10 @@
     CGContextSetShadowWithColor(UIGraphicsGetCurrentContext(), titleShadowOffset, 0.0, titleShadowColor.CGColor);
     
     [titleText drawAtPoint:titlePoint withFont:titleFont];
+    
+    circleView.center = circlePoint;
+    [self addSubview:circleView];
+    
     if (self.numberOfDots > 0)
         [dotsText drawAtPoint:dotsPoint withFont:dotsFont];
 }

@@ -193,7 +193,7 @@
 - (UIColor *)normalTextColor
 {
     if (_normalTextColor == nil)
-        _normalTextColor = [UIColor darkGrayColor];
+        _normalTextColor = [UIColor lightGrayColor];
     return _normalTextColor;
 }
 
@@ -235,7 +235,7 @@
 - (UIColor *)normalTextShadowColor
 {
     if (_normalTextShadowColor == nil)
-        _normalTextShadowColor = [UIColor whiteColor];
+        _normalTextShadowColor = [UIColor darkGrayColor];
     return _normalTextShadowColor;
 }
 
@@ -249,7 +249,7 @@
 - (UIColor *)disabledTextShadowColor
 {
     if (_disabledTextShadowColor == nil)
-        _disabledTextShadowColor = [UIColor whiteColor];
+        _disabledTextShadowColor = [UIColor blackColor];
     return _disabledTextShadowColor;
 }
 
