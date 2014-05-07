@@ -196,9 +196,9 @@
     CGSize titleSize = [titleText sizeWithFont:titleFont];
     CGSize dotsSize = [dotsText sizeWithFont:dotsFont];
     
-    UIView *circleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, titleSize.height, titleSize.height)];
-    circleView.layer.cornerRadius = titleSize.height/2.f;
-    circleView.backgroundColor = [UIColor blueColor];
+//    UIView *circleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, titleSize.height, titleSize.height)];
+//    circleView.layer.cornerRadius = titleSize.height/2.f;
+//    circleView.backgroundColor = [UIColor blueColor];
     
     CGPoint titlePoint = CGPointMake((self.bounds.size.width - titleSize.width)/2,
                                      (self.bounds.size.height - titleSize.height)/2 -
@@ -208,6 +208,8 @@
                                       (self.bounds.size.height*1/8));;
     CGPoint dotsPoint = CGPointMake((self.bounds.size.width - dotsSize.width)/2,
                                     self.bounds.size.height*3/5);
+//    circleView.center = circlePoint;
+//    [self addSubview:circleView];
     
     /*
     if (self.state == UIControlStateNormal || self.state == UIControlStateDisabled)
@@ -238,8 +240,7 @@
     
     [titleText drawAtPoint:titlePoint withFont:titleFont];
     
-    circleView.center = circlePoint;
-    [self addSubview:circleView];
+
     
     if (self.numberOfDots > 0)
         [dotsText drawAtPoint:dotsPoint withFont:dotsFont];

@@ -1180,6 +1180,7 @@
     {
         self.gradientBar = [[UIImageView alloc] initWithImage:[self imageNamed:@"GradientBar"]];
         self.gradientBar.frame = CGRectMake(0, 0, self.bounds.size.width, 50);
+        self.gradientBar.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.7f];
         [self addSubview:self.gradientBar];
     }
     
@@ -1188,7 +1189,7 @@
         self.mainTileView = [[UIView alloc] initWithFrame:CGRectMake(0,50,self.frame.size.width,self.frame.size.height-50)];
         self.mainTileView.userInteractionEnabled = NO;
         self.mainTileView.clipsToBounds = YES;
-        self.mainTileView.backgroundColor = [UIColor colorWithRed:164/255. green:167/255. blue:176/255. alpha:1.0];
+        self.mainTileView.backgroundColor = [UIColor colorWithRed:0/255. green:0/255. blue:0/255. alpha:.7f];
         [self addSubview:self.mainTileView];
         
         UISwipeGestureRecognizer * topRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(anySwiped:)];
