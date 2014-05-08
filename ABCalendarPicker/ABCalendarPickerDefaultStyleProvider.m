@@ -207,7 +207,7 @@
 - (UIColor *)disabledTextColor
 {
     if (_disabledTextColor == nil)
-        _disabledTextColor = [UIColor grayColor];
+        _disabledTextColor = [UIColor colorWithRed:45/255. green:45/255. blue:45/255. alpha:1.0];
     return _disabledTextColor;
 }
 
@@ -221,7 +221,7 @@
 - (UIColor *)selectedTextColor
 {
     if (_selectedTextColor == nil)
-        _selectedTextColor = [UIColor whiteColor];
+        _selectedTextColor = [UIColor colorWithRed:19/255. green:90/255. blue:255/255. alpha:1];
     return _selectedTextColor;
 }
 
@@ -263,7 +263,7 @@
 - (UIColor *)selectedTextShadowColor
 {
     if (_selectedTextShadowColor == nil)
-        _selectedTextShadowColor = [UIColor blackColor];
+        _selectedTextShadowColor = [UIColor clearColor];
     return _selectedTextShadowColor;
 }
 

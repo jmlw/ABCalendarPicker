@@ -196,23 +196,39 @@
     CGSize titleSize = [titleText sizeWithFont:titleFont];
     CGSize dotsSize = [dotsText sizeWithFont:dotsFont];
     
-//    UIView *circleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, titleSize.height, titleSize.height)];
-//    circleView.layer.cornerRadius = titleSize.height/2.f;
-//    circleView.backgroundColor = [UIColor blueColor];
     
+    if (self.highlighted) {
+        CGSize maxTitleSize = [@"30" sizeWithFont:titleFont];
+        float circleSize;
+        
+        if (maxTitleSize.width >= maxTitleSize.height) {
+            circleSize = maxTitleSize.width + 1;
+        } else {
+            circleSize = maxTitleSize.height + 1;
+        }
+        
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGRect rectangle = CGRectMake((self.bounds.size.width/2 - circleSize/2),
+                                      (self.bounds.size.height - titleSize.height)/2 - (self.bounds.size.height*1/8),
+                                      circleSize,
+                                      circleSize);
+        CGContextAddEllipseInRect(context, rectangle);
+        CGContextSetFillColorWithColor(context, [UIColor grayColor].CGColor);
+        CGContextFillPath(context);
+
+        /* TEST TO SHOW BOUNDS OF CIRCLE FRAME */
+//        CGContextSetStrokeColorWithColor(context, [UIColor blueColor].CGColor);
+//        CGContextAddRect(context, rectangle);
+//        CGContextStrokePath(context);
+    }
+
     CGPoint titlePoint = CGPointMake((self.bounds.size.width - titleSize.width)/2,
                                      (self.bounds.size.height - titleSize.height)/2 -
                                      (self.bounds.size.height*1/8));
-    CGPoint circlePoint = CGPointMake((self.bounds.size.width - titleSize.width)/2,
-                                      (self.bounds.size.height - titleSize.height)/2 -
-                                      (self.bounds.size.height*1/8));;
     CGPoint dotsPoint = CGPointMake((self.bounds.size.width - dotsSize.width)/2,
                                     self.bounds.size.height*3/5);
-//    circleView.center = circlePoint;
-//    [self addSubview:circleView];
-    
-    circleView.center = circlePoint;
-    [self addSubview:circleView];
+
+
     /*
     if (self.state == UIControlStateNormal || self.state == UIControlStateDisabled)
     {
@@ -242,8 +258,6 @@
     
     [titleText drawAtPoint:titlePoint withFont:titleFont];
     
-
-    
     if (self.numberOfDots > 0)
         [dotsText drawAtPoint:dotsPoint withFont:dotsFont];
 }
@@ -272,7 +286,8 @@
         [sizeImageDict setObject:resizedImage forKey:[NSValue valueWithCGSize:self.bounds.size]];
     }
     
-    self.backgroundColor = [UIColor colorWithPatternImage:resizedImage];
+//    self.backgroundColor = [UIColor colorWithPatternImage:resizedImage];
+    self.backgroundColor = [UIColor clearColor];
     [super layoutSubviews];
 }
 
@@ -302,6 +317,9 @@
     if (self.highlighted == highlighted)
         return;
     [super setHighlighted:highlighted];
+//    self.highlighted = true;
+    self.backgroundColor = [UIColor clearColor];
+    
     [self layoutSubviews];
     [self setNeedsDisplay];
 }

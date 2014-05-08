@@ -295,8 +295,8 @@
                      deepTap:(SEL)deepTapSel
 {
     button.titleLabel.font = [UIFont fontWithName:@"Hiragino Mincho ProN" size:20];
-    [button setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
+    [button setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];
     [button setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
     button.titleLabel.shadowOffset = CGSizeMake(0,1);
     [button setTitle:text forState:UIControlStateNormal];
