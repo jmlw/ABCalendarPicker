@@ -213,7 +213,7 @@
                                       circleSize,
                                       circleSize);
         CGContextAddEllipseInRect(context, rectangle);
-        CGContextSetFillColorWithColor(context, [UIColor grayColor].CGColor);
+        CGContextSetFillColorWithColor(context, [UIColor lightGrayColor].CGColor);
         CGContextFillPath(context);
 
         /* TEST TO SHOW BOUNDS OF CIRCLE FRAME */
