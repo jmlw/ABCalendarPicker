@@ -196,22 +196,61 @@
     CGSize titleSize = [titleText sizeWithFont:titleFont];
     CGSize dotsSize = [dotsText sizeWithFont:dotsFont];
     
+    CGPoint titlePoint = CGPointMake((self.bounds.size.width - titleSize.width)/2,
+                                     (self.bounds.size.height - titleSize.height)/2 -
+                                     (self.bounds.size.height*1/8));
+    CGPoint dotsPoint = CGPointMake((self.bounds.size.width - dotsSize.width)/2,
+                                    self.bounds.size.height*3/5);
     
-    if (self.highlighted) {
-        CGSize maxTitleSize = [@"30" sizeWithFont:titleFont];
-        float circleSize;
+    CGSize maxTitleSize;
+    float circleSize;
+
+    
+    NSRegularExpression *regexIsNumber = [NSRegularExpression regularExpressionWithPattern:@"^\\d" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSRange rangeIsNumber = [regexIsNumber rangeOfFirstMatchInString:titleText options:0 range:NSMakeRange(0, [titleText length])];
+    NSRegularExpression *regexIsYear = [NSRegularExpression regularExpressionWithPattern:@"^\\d\\d\\d\\d" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSRange rangeIsYear = [regexIsYear rangeOfFirstMatchInString:titleText options:0 range:NSMakeRange(0, [titleText length])];
+    if ( rangeIsNumber.location == NSNotFound || rangeIsYear.location != NSNotFound ) {
+        // didn't find a digit, so this is a Month! OR found a year!
+        maxTitleSize.height = titleSize.height + 2;
+        maxTitleSize.width = titleSize.width + 2;
         
-        if (maxTitleSize.width >= maxTitleSize.height) {
-            circleSize = maxTitleSize.width + 1;
-        } else {
-            circleSize = maxTitleSize.height + 1;
-        }
-        
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        CGRect rectangle = CGRectMake((self.bounds.size.width/2 - circleSize/2),
+        // let's re-center the title if we are a year or month
+        titlePoint = CGPointMake((self.bounds.size.width - titleSize.width)/2,
+                                 (self.bounds.size.height - titleSize.height)/2);
+    } else if ( rangeIsNumber.location != NSNotFound && rangeIsYear.location == NSNotFound ) {
+        // Found a digit, but didn't match a year, must be a day
+        maxTitleSize = [@"30" sizeWithFont:titleFont];
+    }
+    
+    if (maxTitleSize.width >= maxTitleSize.height) {
+        circleSize = maxTitleSize.width + 1;
+    } else {
+        circleSize = maxTitleSize.height + 1;
+    }
+    
+    
+    CGRect rectangle;
+    
+    if ( rangeIsNumber.location == NSNotFound || rangeIsYear.location != NSNotFound ) {
+        // didn't find a digit, so this is a Month! OR found a year!
+        rectangle = CGRectMake((self.bounds.size.width/2 - circleSize/2),
+                               (self.bounds.size.height - titleSize.height - titleSize.height/2)/2,
+                               circleSize,
+                               circleSize);
+    } else if ( rangeIsNumber.location != NSNotFound && rangeIsYear.location == NSNotFound ) {
+        // Found a digit, but didn't match a year, must be a day
+        rectangle = CGRectMake((self.bounds.size.width/2 - circleSize/2),
                                       (self.bounds.size.height - titleSize.height)/2 - (self.bounds.size.height*1/8),
                                       circleSize,
                                       circleSize);
+    }
+    
+
+    
+    
+    if (self.highlighted) {
+        CGContextRef context = UIGraphicsGetCurrentContext();
         CGContextAddEllipseInRect(context, rectangle);
         CGContextSetFillColorWithColor(context, [UIColor lightGrayColor].CGColor);
         CGContextFillPath(context);
@@ -222,36 +261,8 @@
 //        CGContextStrokePath(context);
     }
 
-    CGPoint titlePoint = CGPointMake((self.bounds.size.width - titleSize.width)/2,
-                                     (self.bounds.size.height - titleSize.height)/2 -
-                                     (self.bounds.size.height*1/8));
-    CGPoint dotsPoint = CGPointMake((self.bounds.size.width - dotsSize.width)/2,
-                                    self.bounds.size.height*3/5);
+    
 
-
-    /*
-    if (self.state == UIControlStateNormal || self.state == UIControlStateDisabled)
-    {
-        // Dirty speed up
-        if (self.barStyle == UIBarStyleBlack)
-        {
-            [[UIColor colorWithRed:12/255. green:12/255. blue:12/255. alpha:1.0] set];
-            UIRectFrame(CGRectMake(0,1,self.bounds.size.width-1,self.bounds.size.height-1));
-            [[UIColor colorWithRed:64/255. green:62/255. blue:54/255. alpha:1.0] set];
-            UIRectFrame(self.bounds);
-        }
-        else
-        {
-            [[UIColor colorWithRed:240/255. green:240/255. blue:240/255. alpha:1.0] set];
-            UIRectFrame(CGRectMake(0,1,self.bounds.size.width-1,self.bounds.size.height-1));
-            [[UIColor colorWithRed:176/255. green:176/255. blue:176/255. alpha:1.0] set];
-            UIRectFrame(self.bounds);
-        }
-    } else
-    {
-        [backgroungImage drawInRect:self.bounds];
-    }
-    */
 
     [titleColor set];
     CGContextSetShadowWithColor(UIGraphicsGetCurrentContext(), titleShadowOffset, 0.0, titleShadowColor.CGColor);
