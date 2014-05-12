@@ -749,7 +749,9 @@
     
     self.titleLabel.text = [provider titleText];
     
-    self.gradientBar.image = [self.styleProvider patternImageForGradientBar];
+//    self.gradientBar.image = [self.styleProvider patternImageForGradientBar];
+    
+    self.gradientBar.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.7f];
 }
 
 - (void)updateArrowsForProvider:(id<ABCalendarPickerDateProviderProtocol>)provider
@@ -1178,7 +1180,8 @@
 
     if (self.gradientBar == nil)
     {
-        self.gradientBar = [[UIImageView alloc] initWithImage:[self imageNamed:@"GradientBar"]];
+//        self.gradientBar = [[UIImageView alloc] initWithImage:[self imageNamed:@"GradientBar"]];
+        self.gradientBar = [[UIImageView alloc] init];
         self.gradientBar.frame = CGRectMake(0, 0, self.bounds.size.width, 50);
         self.gradientBar.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.7f];
         [self addSubview:self.gradientBar];

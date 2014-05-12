@@ -221,6 +221,8 @@
     } else if ( rangeIsNumber.location != NSNotFound && rangeIsYear.location == NSNotFound ) {
         // Found a digit, but didn't match a year, must be a day
         maxTitleSize = [@"30" sizeWithFont:titleFont];
+        maxTitleSize.height = titleSize.height + 1;
+        maxTitleSize.width = titleSize.width + 1;
     }
     
     if (maxTitleSize.width >= maxTitleSize.height) {
@@ -232,19 +234,34 @@
     
     CGRect rectangle;
     
-    if ( rangeIsNumber.location == NSNotFound || rangeIsYear.location != NSNotFound ) {
-        // didn't find a digit, so this is a Month! OR found a year!
+    if ( rangeIsNumber.location == 0 && rangeIsNumber.length == 1 && !(rangeIsYear.location == 0) ) {
+        // this is a day
         rectangle = CGRectMake((self.bounds.size.width/2 - circleSize/2),
-                               (self.bounds.size.height - titleSize.height - titleSize.height/2)/2,
+                               (self.bounds.size.height - titleSize.height)/2 - (self.bounds.size.height*1/8),
                                circleSize,
                                circleSize);
-    } else if ( rangeIsNumber.location != NSNotFound && rangeIsYear.location == NSNotFound ) {
-        // Found a digit, but didn't match a year, must be a day
+    } else if (rangeIsNumber.location == 0 && rangeIsYear.length == 4) {
+        // this is a year
         rectangle = CGRectMake((self.bounds.size.width/2 - circleSize/2),
-                                      (self.bounds.size.height - titleSize.height)/2 - (self.bounds.size.height*1/8),
-                                      circleSize,
-                                      circleSize);
+                               (self.bounds.size.height - circleSize)/2,
+                               circleSize,
+                               circleSize);
+    } else {
+        // this is a month or some other thing
+        rectangle = CGRectMake((self.bounds.size.width/2 - circleSize/2),
+//                               (self.bounds.size.height - titleSize.height - titleSize.height/2)/2,
+                               (self.bounds.size.height - circleSize)/2,
+                               circleSize,
+                               circleSize);
     }
+    
+//    if ( rangeIsNumber.location == NSNotFound || rangeIsYear.location != NSNotFound ) {
+//        // didn't find a digit, so this is a Month! OR found a year!
+//        
+//    } else if ( rangeIsNumber.location != NSNotFound && rangeIsYear.location == NSNotFound ) {
+//        // Found a digit, but didn't match a year, must be a day
+//        
+//    }
     
 
     
