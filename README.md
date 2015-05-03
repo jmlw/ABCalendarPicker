@@ -60,7 +60,7 @@ Mr.Calendario long demo: [http://youtu.be/Hz3D4Q5CDuQ](http://youtu.be/Hz3D4Q5CD
 
 ##App to try
 
-[Mr.Calendario in AppStore](http://appstore.com/mr.calendario) (not free)
+[DreamSwapp in AppStore](https://itunes.apple.com/us/app/dreamswapp/id885026872?mt=8) (free)
 
 ---
 Written with [Mou](http://mouapp.com) - The missing Markdown editor for web developers
